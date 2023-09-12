@@ -18,13 +18,13 @@
         <section>
             <div class="row">                
                 <div class="col-3">
-                    <button>btn</button>
+                    <button id="btn-sitio">btn</button>
                 </div>
                 <div class="col-3">
-                    <button>btn</button>
+                    <button id="btn-acampamento">btn</button>
                 </div>
                 <div class="col-3">
-                    <button>btn</button>
+                    <button id="btn-fogueira">btn</button>
                 </div>
             </div>
             <div class="row">
@@ -81,24 +81,38 @@
             return num - (num * multiplicador)
         };
 
-        function updatePlots() {
+        function updateSitio() {
             var widthScreen = resizer(window.innerWidth);
             var heightScreen = window.innerHeight - (window.innerHeight * 0.1);
             showPlot('./plots/sitio.json', 'plot', widthScreen, heightScreen);
-            // showPlot('./plots/acampamento.json', 'plot-acampamento', widthScreen, heightScreen);
-            // showPlot('./plots/fogueira.json', 'plot-fogueira', widthScreen, heightScreen)
+        };
+
+        function updateAcampamento() {
+            var widthScreen = resizer(window.innerWidth);
+            var heightScreen = window.innerHeight - (window.innerHeight * 0.1);
+            showPlot('./plots/acampamento.json', 'plot', widthScreen, heightScreen);
+        };
+
+        function updateFogueira() {
+            var widthScreen = resizer(window.innerWidth);
+            var heightScreen = window.innerHeight - (window.innerHeight * 0.1);
+            showPlot('./plots/fogueira.json', 'plot', widthScreen, heightScreen);
         };
 
 
 
-
         document.addEventListener('DOMContentLoaded', function() {
-            updatePlots();
-            window.addEventListener('resize', function() {
-                updatePlots()
+            updateSitio()
+            document.getElementById('btn-sitio').addEventListener('click', function() {
+                updateSitio()
+            });
+            document.getElementById('btn-acampamento').addEventListener('click', function() {
+                updateAcampamento()
+            });
+            document.getElementById('btn-fogueira').addEventListener('click', function() {
+                updateFogueira()
             })
         })
-
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
