@@ -1,121 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sítio RS TQ-141</title>
     <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- CSS -->
     <style>
         * {
-            margin: 0;
             padding: 0;
+            margin: 0;
         }
-
-        #cabecalho {
-            background-color: antiquewhite;
-        }
-
-        #apresentacao,
-        #plots {
-            height: 100vh;
-        }
-        .bgDark {
-            background-color: black;
-        }
-
-
-    </style>
+        </style>
 </head>
-<body class="bgDark">
-    <!-- cabeçalho -->
-    <header id="cabecalho" class="navbar navbar-expand-lg navbar-expand-md sticky-top">
-        <div class="container">
-            <h1 class="navbar-brand section-title m-0">Acampamento guarani</h1>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu-navegacao">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <nav id="menu-navegacao" class="navbar-collapse collapse">
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a href="#apresentacao" class="nav-link">
-                            apresentação
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a href="#plots" class="nav-link">
-                            visualização
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a href="#datum" class="nav-link">
-                            datum
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- conteúdo -->
-    <div data-bs-spy="scroll" data-bs-target="cabecalho" data-bs-smooth-scroll="true">
-        
-        <!-- apresentação -->
-        <section id="apresentacao">
-            <p id="apresentacao-texto">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi animi, atque possimus dignissimos placeat recusandae, numquam labore debitis minus facilis temporibus vero molestiae ratione libero quos, cumque esse maiores nesciunt!
-            </p>
-        </section>
-
-        <!-- Plots -->
-        <section class="position-relative" id="plots">
-            <div class="container">
-                <div class="tab-content position-absolute top-50 start-50 translate-middle">
-                    <div id="pills-sitio" class="tab-pane fade show active" role="tabpanel" aria-labelledby="btn-sitio" tabindex="0">
-                        <div id="plot-sitio"></div>
-                    </div>
-                    <div id="pills-acampamento" class="tab-pane fade" role="tabpanel" aria-labelledby="btn-acampamento" tabindex="0">
-                        <div id="plot-acampamento"></div>
-                    </div>
-                    <div id="pills-fogueira" class="tab-pane fade" role="tabpanel" aria-labelledby="btn-fogueira" tabindex="0">
-                        <div id="plot-fogueira"></div>
-                    </div>
+<body>
+    <div class="container">
+        <section>
+            <div class="row">                
+                <div class="col-3">
+                    <button>btn</button>
                 </div>
-                <ul class="nav nav-pills d-flex position-absolute top-100 start-50 translate-middle" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="btn-sitio" data-bs-toggle="pill" data-bs-target="#pills-sitio" type="button" role="tab" aria-controls="pills-sitio" aria-selected="true">Sítio</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="btn-acampamento" data-bs-toggle="pill" data-bs-target="#pills-acampamento" type="button" role="tab" aria-controls="pills-acampamento" aria-selected="false">Acampamento</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="btn-fogueira" data-bs-toggle="pill" data-bs-target="#pills-fogueira" type="button" role="tab" aria-controls="pills-fogueira" aria-selected="false">Fogueira</button>
-                    </li>
-                </ul>
+                <div class="col-3">
+                    <button>btn</button>
+                </div>
+                <div class="col-3">
+                    <button>btn</button>
+                </div>
             </div>
-        </section>
-        <!-- Datum -->
-        <section class="mt-5" id="datum">
-            <div>teste</div>
-            <div class="container d-flex justify-content-center">
-                <iframe class="w-100 m-5" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d40411.45523496327!2d-51.967605960394195!3d-29.60797783806736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1693948415065!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="row">
+                <div id="plot"></div>
             </div>
         </section>
     </div>
-
     <script>
-    // Funções:
-        // carrega o arquivo json do plotly
         async function load_json(url_json) {
             const response = await fetch(url_json);    
             return await response.json();
-        };
-        // cria o plot em função de uma largura e altura específicos
+        }
         function showPlot(url_json, id_html, _width, _height) {
             var plotDiv = document.getElementById(id_html);
             load_json(url_json)
@@ -159,21 +80,26 @@
             }   
             return num - (num * multiplicador)
         };
-        // carrega e atualiza dos plots
+
         function updatePlots() {
             var widthScreen = resizer(window.innerWidth);
             var heightScreen = window.innerHeight - (window.innerHeight * 0.1);
-            showPlot('./plots/sitio.json', 'plot-sitio', widthScreen, heightScreen);
-            showPlot('./plots/acampamento.json', 'plot-acampamento', widthScreen, heightScreen);
-            showPlot('./plots/fogueira.json', 'plot-fogueira', widthScreen, heightScreen)
+            showPlot('./plots/sitio.json', 'plot', widthScreen, heightScreen);
+            // showPlot('./plots/acampamento.json', 'plot-acampamento', widthScreen, heightScreen);
+            // showPlot('./plots/fogueira.json', 'plot-fogueira', widthScreen, heightScreen)
         };
-    // código da página
+
+
+
+
         document.addEventListener('DOMContentLoaded', function() {
             updatePlots();
             window.addEventListener('resize', function() {
                 updatePlots()
             })
         })
+
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
