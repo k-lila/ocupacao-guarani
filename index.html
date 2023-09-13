@@ -14,11 +14,44 @@
         body {
             background-color: black;
         }
+
+        .google-maps {
+            position: relative;
+            padding-bottom: 75%;
+            height: 0;
+            overflow: hidden
+        }
+
+        .google-maps iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
         </style>
 </head>
 <body>
     <div id="container" class="container">
+        <section id="apresentacao">
+            <div>
+                <h1 class="text-center">Ocupação guarani RS TQ-141</h1>
+                <p class="text-center">
+                    Aqui temos um mapa interativo da dispersão do material arqueológico escavado no sítio RS TQ-141, assim como algumas informações adicionais para quem ficar interessado.<br><br>
+                    O sítio está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari, e fora escavado em 2017<br><br>
+                    A cultura indica uma ocupação guarani pré-histórica devido à grande presença de material cerâmico com acabamentos de superfície corrugados, lisos, pintados etc.<br><br>
+                    Estima-se que essa habitação humana tenha ocorrido há aproximadamente 500 anos.
+                </p>
+            </div>
+            <div class="google-maps">
+                <iframe class="d-flex mx-auto" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d40411.45523496327!2d-51.967605960394195!3d-29.60797783806736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1693948415065!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
         <section>
+            <div class="row mt-4">
+                <div class="d-flex justify-content-center" id="plot"></div>
+            </div>
             <div class="row m-3">                
                 <div class="col-4">
                     <button class="btn btn-primary d-flex mx-auto" id="btn-sitio">btn</button>
@@ -29,9 +62,6 @@
                 <div class="col-4">
                     <button class="btn btn-primary d-flex mx-auto" id="btn-fogueira">btn</button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="d-flex justify-content-center" id="plot"></div>
             </div>
         </section>
     </div>
