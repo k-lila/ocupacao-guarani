@@ -11,44 +11,47 @@
             padding: 0;
             margin: 0;
         }
+        body {
+            background-color: black;
+        }
         </style>
 </head>
 <body>
-    <div class="container">
+    <div id="container" class="container">
         <section>
-            <div class="row">                
-                <div class="col-3">
-                    <button id="btn-sitio">btn</button>
+            <div class="row m-3">                
+                <div class="col-4">
+                    <button class="btn btn-primary d-flex mx-auto" id="btn-sitio">btn</button>
                 </div>
-                <div class="col-3">
-                    <button id="btn-acampamento">btn</button>
+                <div class="col-4">
+                    <button class="btn btn-primary d-flex mx-auto" id="btn-acampamento">btn</button>
                 </div>
-                <div class="col-3">
-                    <button id="btn-fogueira">btn</button>
+                <div class="col-4">
+                    <button class="btn btn-primary d-flex mx-auto" id="btn-fogueira">btn</button>
                 </div>
             </div>
             <div class="row">
-                <div id="plot"></div>
+                <div class="d-flex justify-content-center" id="plot"></div>
             </div>
         </section>
     </div>
     <script>
+        // carrega o arquivo json
         async function load_json(url_json) {
             const response = await fetch(url_json);    
             return await response.json();
         }
+        // cria o plot
         function showPlot(url_json, id_html, _width, _height) {
             var plotDiv = document.getElementById(id_html);
             load_json(url_json)
             .then(function(json_loaded) {
-                var data_plot = json_loaded.data;
-                var data_layout = json_loaded.layout;
                 Plotly.newPlot(
                     plotDiv,
-                    data_plot,
-                    data_layout
+                    json_loaded.data,
+                    json_loaded.layout
                 );
-                var update = 0;
+                var update = null;
                 if (_width > 600) {
                     var update = {
                         width: _width,
@@ -67,53 +70,42 @@
                 );
             })
         };
-        // função simples que reduz uma % do valor dado 
-        function resizer(num) {
-            var widthScreen = window.innerWidth;
-            multiplicador = null;
-            if (widthScreen >= 768) {
-                multiplicador = 0.3
-            } else if (widthScreen < 768) {
-                multiplicador = 0.2
-            } else if (widthScreen < 576) {
-                multiplicador = 0.1
-            }   
-            return num - (num * multiplicador)
+        // função simples que reduz uma % do valor da largura da tela 
+        function resize(num, minus) {
+            return num - (num * minus)
         };
-
-        function updateSitio() {
-            var widthScreen = resizer(window.innerWidth);
-            var heightScreen = window.innerHeight - (window.innerHeight * 0.1);
-            showPlot('./plots/sitio.json', 'plot', widthScreen, heightScreen);
+        // função que atualiza e mostra o plot
+        function updatePlot(name_plot) {
+            var widthScreen = resize(document.getElementById('container').offsetWidth, 0.1);
+            var heightScreen = resize(window.innerHeight, 0.2);
+            if (name_plot === 'sitio') {
+                showPlot('./plots/sitio.json', 'plot', widthScreen, heightScreen);
+            } else if (name_plot === 'acampamento') {
+                showPlot('./plots/acampamento.json', 'plot', widthScreen, heightScreen);
+            } else if (name_plot === 'fogueira') {
+                showPlot('./plots/fogueira.json', 'plot', widthScreen, heightScreen);
+            }
         };
-
-        function updateAcampamento() {
-            var widthScreen = resizer(window.innerWidth);
-            var heightScreen = window.innerHeight - (window.innerHeight * 0.1);
-            showPlot('./plots/acampamento.json', 'plot', widthScreen, heightScreen);
-        };
-
-        function updateFogueira() {
-            var widthScreen = resizer(window.innerWidth);
-            var heightScreen = window.innerHeight - (window.innerHeight * 0.1);
-            showPlot('./plots/fogueira.json', 'plot', widthScreen, heightScreen);
-        };
-
-
-
+        // código da página
         document.addEventListener('DOMContentLoaded', function() {
-            updateSitio()
+            var name_plot = 'acampamento';
+            updatePlot(name_plot);
             document.getElementById('btn-sitio').addEventListener('click', function() {
-                updateSitio()
+                name_plot = 'sitio';
+                updatePlot(name_plot);
             });
             document.getElementById('btn-acampamento').addEventListener('click', function() {
-                updateAcampamento()
+                name_plot = 'acampamento'
+                updatePlot(name_plot);
             });
             document.getElementById('btn-fogueira').addEventListener('click', function() {
-                updateFogueira()
+                name_plot  = 'fogueira'
+                updatePlot(name_plot);
+            });
+            window.addEventListener('resize', function() {
+                updatePlot(name_plot)
             })
         })
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
