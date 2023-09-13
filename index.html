@@ -7,10 +7,13 @@
     <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
+
         * {
             padding: 0;
             margin: 0;
+            color: antiquewhite;
         }
+
         body {
             background-color: black;
         }
@@ -19,7 +22,7 @@
             position: relative;
             padding-bottom: 75%;
             height: 0;
-            overflow: hidden
+            overflow: hidden;
         }
 
         .google-maps iframe {
@@ -28,28 +31,36 @@
             left: 0;
             width: 100% !important;
             height: 100% !important;
+            padding: 1% 10%;
         }
 
         </style>
 </head>
 <body>
     <div id="container" class="container">
-        <section id="apresentacao">
-            <div>
-                <h1 class="text-center">Ocupação guarani RS TQ-141</h1>
-                <p class="text-center">
-                    Aqui temos um mapa interativo da dispersão do material arqueológico escavado no sítio RS TQ-141, assim como algumas informações adicionais para quem ficar interessado.<br><br>
-                    O sítio está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari, e fora escavado em 2017<br><br>
-                    A cultura indica uma ocupação guarani pré-histórica devido à grande presença de material cerâmico com acabamentos de superfície corrugados, lisos, pintados etc.<br><br>
-                    Estima-se que essa habitação humana tenha ocorrido há aproximadamente 500 anos.
-                </p>
-            </div>
-            <div class="google-maps">
-                <iframe class="d-flex mx-auto" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d40411.45523496327!2d-51.967605960394195!3d-29.60797783806736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1693948415065!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+        <section class="mb-5" id="apresentacao">
+            <h1 class="h1 mt-4 text-center">Ocupação guarani<br>RS TQ-141</h1>
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col">
+                    <p class="text-center mx-3 my-2 px-4 pt-2">
+                        Aqui temos um mapa interativo da dispersão do material arqueológico escavado no sítio RS TQ-141, assim como algumas informações adicionais para quem ficar interessado.<br><br>
+                        O sítio está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari, e fora escavado em 2017<br><br>
+                    </p>
+                </div>
+                <div class="col my-auto pb-2">
+                    <div class="google-maps">
+                        <iframe class="d-flex mx-auto" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d40411.45523496327!2d-51.967605960394195!3d-29.60797783806736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1693948415065!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
             </div>
         </section>
+
+
+
         <section>
-            <div class="row mt-4">
+            <div class="row mt-1">
                 <div class="d-flex justify-content-center" id="plot"></div>
             </div>
             <div class="row m-3">                
@@ -100,14 +111,15 @@
                 );
             })
         };
-        // função simples que reduz uma % do valor da largura da tela 
+        // função simples que reduz uma % do valor dado.
         function resize(num, minus) {
             return num - (num * minus)
         };
         // função que atualiza e mostra o plot
         function updatePlot(name_plot) {
-            var widthScreen = resize(document.getElementById('container').offsetWidth, 0.1);
-            var heightScreen = resize(window.innerHeight, 0.2);
+            var widthScreen = resize(document.getElementById('container').offsetWidth, 0.2);
+            // var heightScreen = resize(window.innerHeight, 0.2);
+            var heightScreen = widthScreen
             if (name_plot === 'sitio') {
                 showPlot('./plots/sitio.json', 'plot', widthScreen, heightScreen);
             } else if (name_plot === 'acampamento') {
