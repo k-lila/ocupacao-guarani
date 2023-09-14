@@ -115,14 +115,12 @@
             })
         };
         // função simples que reduz uma % do valor dado.
-        function resize(num, minus) {
-            return num - (num * minus)
-        };
+        function resize(num, minus) {return num - (num * minus)};
         // função que atualiza e mostra o plot
         function updatePlot(name_plot) {
             var widthScreen = resize(document.getElementById('container').offsetWidth, 0.2);
-            // var heightScreen = resize(window.innerHeight, 0.2);
-            var heightScreen = widthScreen
+            var heightScreen = resize(window.innerHeight, 0.2);
+            if (heightScreen > widthScreen) {heightScreen = widthScreen};
             if (name_plot === 'sitio') {
                 showPlot('./plots/sitio.json', 'plot', widthScreen, heightScreen);
             } else if (name_plot === 'acampamento') {
