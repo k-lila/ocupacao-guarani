@@ -38,8 +38,6 @@
 </head>
 <body>
     <div id="container" class="container">
-
-
         <section class="mb-5" id="apresentacao">
             <h1 class="h1 mt-4 text-center">Ocupação guarani<br>RS TQ-141</h1>
             <div class="row row-cols-1 row-cols-md-2">
@@ -59,24 +57,28 @@
                 </div>
             </div>
         </section>
-
-
-
         <section>
             <div class="row mt-1">
                 <div class="d-flex justify-content-center" id="plot"></div>
             </div>
-            <div class="row m-3">                
-                <div class="col-4">
-                    <button class="btn btn-primary d-flex mx-auto" id="btn-sitio">btn</button>
+            <div class="row m-3">
+                <div class="row border rounded">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Plots
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="btn btn-primary" id="btn-sitio">Sítio</button></li>
+                            <li><button class="btn btn-primary" id="btn-acampamento">Acampamento</button></li>
+                            <li><button class="btn btn-primary" id="btn-fogueira">Fogueira</button></li>
+                            <li><button class="btn btn-primary" id="btn-quadrante1">Quadrante 1</button></li>
+                            <li><button class="btn btn-primary" id="btn-quadrante2">Quadrante 2</button></li>
+                            <li><button class="btn btn-primary" id="btn-quadrante3">Quadrante 3</button></li>
+                            <li><button class="btn btn-primary" id="btn-quadrante4">Quadrante 4</button></li>
+                            <li><button class="btn btn-primary" id="btn-quadrante5">Quadrante 5</button></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-4">
-                    <button class="btn btn-primary d-flex mx-auto" id="btn-acampamento">btn</button>
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-primary d-flex mx-auto" id="btn-fogueira">btn</button>
-                </div>
-            </div>
         </section>
     </div>
     <script>
@@ -120,19 +122,14 @@
         function updatePlot(name_plot) {
             var widthScreen = resize(document.getElementById('container').offsetWidth, 0.2);
             var heightScreen = resize(window.innerHeight, 0.2);
-            if (heightScreen > widthScreen) {heightScreen = widthScreen};
-            if (name_plot === 'sitio') {
-                showPlot('./plots/sitio.json', 'plot', widthScreen, heightScreen);
-            } else if (name_plot === 'acampamento') {
-                showPlot('./plots/acampamento.json', 'plot', widthScreen, heightScreen);
-            } else if (name_plot === 'fogueira') {
-                showPlot('./plots/fogueira.json', 'plot', widthScreen, heightScreen);
-            }
+            if (heightScreen > widthScreen) {heightScreen = widthScreen};            
+            showPlot(`./plots/${name_plot}.json`, 'plot', widthScreen, heightScreen)
         };
         // código da página
         document.addEventListener('DOMContentLoaded', function() {
             var name_plot = 'acampamento';
             updatePlot(name_plot);
+
             document.getElementById('btn-sitio').addEventListener('click', function() {
                 name_plot = 'sitio';
                 updatePlot(name_plot);
@@ -145,6 +142,31 @@
                 name_plot  = 'fogueira'
                 updatePlot(name_plot);
             });
+            document.getElementById('btn-quadrante1').addEventListener('click', function() {
+                name_plot  = 'quadrante1'
+                updatePlot(name_plot);
+            });
+            document.getElementById('btn-quadrante2').addEventListener('click', function() {
+                name_plot  = 'quadrante2'
+                updatePlot(name_plot);
+            });
+            document.getElementById('btn-quadrante3').addEventListener('click', function() {
+                name_plot  = 'quadrante3'
+                updatePlot(name_plot);
+            });
+            document.getElementById('btn-quadrante4').addEventListener('click', function() {
+                name_plot  = 'quadrante4'
+                updatePlot(name_plot);
+            });
+            document.getElementById('btn-quadrante5').addEventListener('click', function() {
+                name_plot  = 'quadrante5'
+                updatePlot(name_plot);
+            });
+
+
+
+
+
             window.addEventListener('resize', function() {
                 updatePlot(name_plot)
             })
