@@ -17,14 +17,8 @@
             background-color: black;
         }
 
-        #modalPlot {
-            height: 100%;
-            width: 100%;
-        }
-
-        .modal-height {
-            height: 90vh;
-        }
+        /* #modalPlot {
+        } */
 
         .google-maps {
             position: relative;
@@ -79,8 +73,8 @@
         <!-- modal -->
         <section>
             <div class="modal fade" id="modalPlot" tabindex="-1" aria-labelledby="modalPlotLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content modal-height">
+                <div class="modal-dialog modal-fullscreen modal-dialog-centered p-4">
+                    <div class="modal-content">
                         <div id="modal-body" class="modal-body">
                             <div class="d-flex justify-content-center" id="plot">p</div>
                         </div>
@@ -156,15 +150,12 @@
             })
         };
         // função que atualiza e mostra o plot
-        function updatePlot(name_plot) {
-            
-            function resize(num, minus) {return num - (num * minus)};
+        function updatePlot(name_plot) {            
             var referencia = document.getElementById('modal-body');
+            function resize(num, minus) {return num - (num * minus)};
             var heightScreen = resize(referencia.offsetHeight, 0.1);
             var widthScreen = resize(referencia.offsetWidth, 0.1);
-            console.log(widthScreen, heightScreen)
             showPlot(`./plots/${name_plot}.json`, 'plot', widthScreen, heightScreen)
-
         };
         // código da página
         document.addEventListener('DOMContentLoaded', function() {
@@ -181,13 +172,8 @@
             var name_plot = plotList[0];
             var modalPlot = document.getElementById('modalPlot');
             modalPlot.addEventListener('shown.bs.modal', function() {
-
-                var referencia = document.getElementById('modal-body').offsetHeight;
-                alert(referencia)
-
-
-                updatePlot(name_plot);
-                window.addEventListener('orientationchange', function() {
+                updatePlot(name_plot)
+                window.addEventListener('resize', function() {
                     updatePlot(name_plot)
                 })
             });
