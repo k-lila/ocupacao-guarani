@@ -7,7 +7,6 @@
     <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-
         * {
             padding: 0;
             margin: 0;
@@ -16,9 +15,6 @@
         body {
             background-color: black;
         }
-
-        /* #modalPlot {
-        } */
 
         .google-maps {
             position: relative;
@@ -35,7 +31,7 @@
             height: 100% !important;
             padding: 1% 1%;
         }
-        </style>
+    </style>
 </head>
 <body>
     <div id="container" class="container">
@@ -65,54 +61,60 @@
                 <div class="row px-5 mx-5">
                     <button id="launch-modal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPlot">
                         Launch demo modal
-                </button>
-                    <button class="btn btn-info row-cols-1 my-3 p-2" type="button">info</button>
+                    </button>
+                    <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#modalInfo">info</button>
                 </div>
             </div>
         </section>
-        <!-- modal -->
+        <!-- modal plot-->
         <section>
-            <div class="modal fade" id="modalPlot" tabindex="-1" aria-labelledby="modalPlotLabel" aria-hidden="true">
+            <div class="modal fade" id="modalPlot" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered p-4">
                     <div class="modal-content">
                         <div id="modal-body" class="modal-body">
-                            <div class="d-flex justify-content-center" id="plot">p</div>
+                            <div class="d-flex justify-content-center" id="plot"></div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <div class="btn-group dropup">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Plots
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><button class="btn btn-primary" id="btn-sitio">Sítio</button></li>
+                                    <li><button class="btn btn-primary" id="btn-acampamento">Acampamento</button></li>
+                                    <li><button class="btn btn-primary" id="btn-fogueira">Fogueira</button></li>
+                                    <li><button class="btn btn-primary" id="btn-quadrante1">Quadrante 1</button></li>
+                                    <li><button class="btn btn-primary" id="btn-quadrante2">Quadrante 2</button></li>
+                                    <li><button class="btn btn-primary" id="btn-quadrante3">Quadrante 3</button></li>
+                                    <li><button class="btn btn-primary" id="btn-quadrante4">Quadrante 4</button></li>
+                                    <li><button class="btn btn-primary" id="btn-quadrante5">Quadrante 5</button></li>
+                                </ul>
+                            </div>                        
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-
-
-
-
-        <!-- <section>
-            <div class="row mt-1">
-                <div class="d-flex justify-content-center" id="plot"></div>
-            </div>
-            <div class="row m-3">
-                <div class="row border rounded">
-                    <div class="btn-group dropup">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Plots
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><button class="btn btn-primary" id="btn-sitio">Sítio</button></li>
-                            <li><button class="btn btn-primary" id="btn-acampamento">Acampamento</button></li>
-                            <li><button class="btn btn-primary" id="btn-fogueira">Fogueira</button></li>
-                            <li><button class="btn btn-primary" id="btn-quadrante1">Quadrante 1</button></li>
-                            <li><button class="btn btn-primary" id="btn-quadrante2">Quadrante 2</button></li>
-                            <li><button class="btn btn-primary" id="btn-quadrante3">Quadrante 3</button></li>
-                            <li><button class="btn btn-primary" id="btn-quadrante4">Quadrante 4</button></li>
-                            <li><button class="btn btn-primary" id="btn-quadrante5">Quadrante 5</button></li>
-                        </ul>
+        <!-- modal info -->
+        <section>
+            <div class="modal fade" id="modalInfo" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">info</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            uiasduidashdiasduhasdoásuihdaipsudgasiçkjdghaspiçdugahspdiuasg
+                        </div>
+                        <div class="modal-footer">
+                            footer
+                        </div>
                     </div>
                 </div>
-        </section> -->
+            </div>
+        </section>
     </div>
     <script>
         // carrega o arquivo json
@@ -150,11 +152,11 @@
             })
         };
         // função que atualiza e mostra o plot
-        function updatePlot(name_plot) {            
+        function updatePlot(name_plot) {
             var referencia = document.getElementById('modal-body');
             function resize(num, minus) {return num - (num * minus)};
-            var heightScreen = resize(referencia.offsetHeight, 0.1);
-            var widthScreen = resize(referencia.offsetWidth, 0.1);
+            var heightScreen = resize(referencia.offsetHeight, 0.05);
+            var widthScreen = resize(referencia.offsetWidth, 0.05);
             showPlot(`./plots/${name_plot}.json`, 'plot', widthScreen, heightScreen)
         };
         // código da página
@@ -168,30 +170,21 @@
                 'quadrante3',
                 'quadrante4',
                 'quadrante5'                
-            ]
+            ];
             var name_plot = plotList[0];
             var modalPlot = document.getElementById('modalPlot');
             modalPlot.addEventListener('shown.bs.modal', function() {
-                updatePlot(name_plot)
+                updatePlot(name_plot);
+                plotList.forEach(function(plot) {
+                    document.getElementById(`btn-${plot}`).addEventListener('click', function() {
+                        name_plot = plot;
+                        updatePlot(name_plot)
+                    })
+                });
                 window.addEventListener('resize', function() {
                     updatePlot(name_plot)
                 })
             });
-            
-
-
-
-
-            // plotList.forEach(function(plot) {
-            //     document.getElementById(`btn-${plot}`).addEventListener('click', function() {
-            //         name_plot = plot
-            //         updatePlot(plot)
-            //     })
-            // })
-            // document.getElementBy
-            // window.addEventListener('resize', function() {
-            //     updatePlot(name_plot)
-            // })
         })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
