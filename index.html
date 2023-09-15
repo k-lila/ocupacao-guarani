@@ -11,11 +11,19 @@
         * {
             padding: 0;
             margin: 0;
-            color: antiquewhite;
         }
 
         body {
             background-color: black;
+        }
+
+        #modalPlot {
+            height: 100%;
+            width: 100%;
+        }
+
+        .modal-height {
+            height: 90vh;
         }
 
         .google-maps {
@@ -31,33 +39,64 @@
             left: 0;
             width: 100% !important;
             height: 100% !important;
-            padding: 1% 10%;
+            padding: 1% 1%;
         }
-
         </style>
 </head>
 <body>
     <div id="container" class="container">
-        <section class="mb-5" id="apresentacao">
-            <h1 class="h1 mt-4 text-center">Ocupação guarani<br>RS TQ-141</h1>
-            <div class="row row-cols-1 row-cols-md-2">
-                <div class="col my-auto">
-                    <p class="text-center mx-3 my-2 px-4 pt-2">
-                        Aqui temos um mapa interativo da dispersão do material arqueológico escavado no sítio RS TQ-141, assim como algumas informações adicionais para quem ficar interessado.<br><br>
-                        O sítio está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari, e fora escavado em 2017<br><br>
-                    </p>
-                    <p class="text-center mx-3 my-2 px-4 pt-2 d-none d-lg-block">
-                        A cultura indica uma ocupação guarani pré-histórica devido à grande presença de material cerâmico com acabamentos de superfície corrugados, lisos, pintados etc.<br><br>
-                        Estima-se que essa habitação humana tenha ocorrido há aproximadamente 500 anos.
-                    </p>
-                </div>
-                <div class="col my-auto pb-2">
+
+        <!-- cards -->
+        <section class="mb-5">
+            <!-- card datum -->
+            <div id="datum" class="card my-2">
+                <div class="card-header">datum</div>
+                <div class="card-body">
                     <div class="google-maps">
-                        <iframe class="d-flex mx-auto" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1785.8157050367063!2d-51.94129866259723!3d-29.61561643379446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1694630741939!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1785.8157050367063!2d-51.94129866259723!3d-29.61561643379446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1694630741939!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+            <!-- card apresentacao -->
+            <div id="apresentacao" class="card my-auto">
+                <div class="card-header">header</div>
+                <p class="card-text">
+                    Aqui temos um mapa interativo da dispersão do material arqueológico escavado no sítio RS TQ-141, assim como algumas informações adicionais para quem ficar interessado.<br><br>
+                    O sítio está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari, e fora escavado em 2017<br><br>
+                </p>
+                <p class="card-text d-none d-lg-block">
+                    A cultura indica uma ocupação guarani pré-histórica devido à grande presença de material cerâmico com acabamentos de superfície corrugados, lisos, pintados etc.<br><br>
+                    Estima-se que essa habitação humana tenha ocorrido há aproximadamente 500 anos.
+                </p>
+                <div class="row px-5 mx-5">
+                    <button id="launch-modal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPlot">
+                        Launch demo modal
+                </button>
+                    <button class="btn btn-info row-cols-1 my-3 p-2" type="button">info</button>
                 </div>
             </div>
         </section>
+        <!-- modal -->
         <section>
+            <div class="modal fade" id="modalPlot" tabindex="-1" aria-labelledby="modalPlotLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content modal-height">
+                        <div id="modal-body" class="modal-body">
+                            <div class="d-flex justify-content-center" id="plot">p</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- <section>
             <div class="row mt-1">
                 <div class="d-flex justify-content-center" id="plot"></div>
             </div>
@@ -79,7 +118,7 @@
                         </ul>
                     </div>
                 </div>
-        </section>
+        </section> -->
     </div>
     <script>
         // carrega o arquivo json
@@ -116,14 +155,16 @@
                 );
             })
         };
-        // função simples que reduz uma % do valor dado.
-        function resize(num, minus) {return num - (num * minus)};
         // função que atualiza e mostra o plot
         function updatePlot(name_plot) {
-            var widthScreen = resize(document.getElementById('container').offsetWidth, 0.2);
-            var heightScreen = resize(window.innerHeight, 0.2);
-            if (heightScreen > widthScreen) {heightScreen = widthScreen};            
+            
+            function resize(num, minus) {return num - (num * minus)};
+            var referencia = document.getElementById('modal-body');
+            var heightScreen = resize(referencia.offsetHeight, 0.1);
+            var widthScreen = resize(referencia.offsetWidth, 0.1);
+            console.log(widthScreen, heightScreen)
             showPlot(`./plots/${name_plot}.json`, 'plot', widthScreen, heightScreen)
+
         };
         // código da página
         document.addEventListener('DOMContentLoaded', function() {
@@ -138,17 +179,33 @@
                 'quadrante5'                
             ]
             var name_plot = plotList[0];
-            updatePlot(name_plot);
-            plotList.forEach(function(plot) {
-                document.getElementById(`btn-${plot}`).addEventListener('click', function() {
-                    name_plot = plot
-                    updatePlot(plot)
+            var modalPlot = document.getElementById('modalPlot');
+            modalPlot.addEventListener('shown.bs.modal', function() {
+
+                var referencia = document.getElementById('modal-body').offsetHeight;
+                alert(referencia)
+
+
+                updatePlot(name_plot);
+                window.addEventListener('orientationchange', function() {
+                    updatePlot(name_plot)
                 })
-            })
-            document.getElementBy
-            window.addEventListener('resize', function() {
-                updatePlot(name_plot)
-            })
+            });
+            
+
+
+
+
+            // plotList.forEach(function(plot) {
+            //     document.getElementById(`btn-${plot}`).addEventListener('click', function() {
+            //         name_plot = plot
+            //         updatePlot(plot)
+            //     })
+            // })
+            // document.getElementBy
+            // window.addEventListener('resize', function() {
+            //     updatePlot(name_plot)
+            // })
         })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
