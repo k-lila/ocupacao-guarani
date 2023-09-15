@@ -127,46 +127,25 @@
         };
         // código da página
         document.addEventListener('DOMContentLoaded', function() {
-            var name_plot = 'acampamento';
+            const plotList = [
+                'sitio',
+                'acampamento',
+                'fogueira',
+                'quadrante1',
+                'quadrante2',
+                'quadrante3',
+                'quadrante4',
+                'quadrante5'                
+            ]
+            var name_plot = plotList[0];
             updatePlot(name_plot);
-
-            document.getElementById('btn-sitio').addEventListener('click', function() {
-                name_plot = 'sitio';
-                updatePlot(name_plot);
-            });
-            document.getElementById('btn-acampamento').addEventListener('click', function() {
-                name_plot = 'acampamento'
-                updatePlot(name_plot);
-            });
-            document.getElementById('btn-fogueira').addEventListener('click', function() {
-                name_plot  = 'fogueira'
-                updatePlot(name_plot);
-            });
-            document.getElementById('btn-quadrante1').addEventListener('click', function() {
-                name_plot  = 'quadrante1'
-                updatePlot(name_plot);
-            });
-            document.getElementById('btn-quadrante2').addEventListener('click', function() {
-                name_plot  = 'quadrante2'
-                updatePlot(name_plot);
-            });
-            document.getElementById('btn-quadrante3').addEventListener('click', function() {
-                name_plot  = 'quadrante3'
-                updatePlot(name_plot);
-            });
-            document.getElementById('btn-quadrante4').addEventListener('click', function() {
-                name_plot  = 'quadrante4'
-                updatePlot(name_plot);
-            });
-            document.getElementById('btn-quadrante5').addEventListener('click', function() {
-                name_plot  = 'quadrante5'
-                updatePlot(name_plot);
-            });
-
-
-
-
-
+            plotList.forEach(function(plot) {
+                document.getElementById(`btn-${plot}`).addEventListener('click', function() {
+                    name_plot = plot
+                    updatePlot(plot)
+                })
+            })
+            document.getElementBy
             window.addEventListener('resize', function() {
                 updatePlot(name_plot)
             })
