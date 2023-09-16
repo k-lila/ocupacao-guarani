@@ -18,7 +18,7 @@
 
         .google-maps {
             position: relative;
-            padding-bottom: 75%;
+            padding-bottom: 100%;
             height: 0;
             overflow: hidden;
         }
@@ -31,6 +31,10 @@
             height: 100% !important;
             padding: 1% 1%;
         }
+
+
+
+
     </style>
 </head>
 <body>
@@ -38,34 +42,56 @@
 
         <!-- cards -->
         <section class="mb-5">
-            <!-- card datum -->
-            <div id="datum" class="card my-2">
-                <div class="card-header">datum</div>
-                <div class="card-body">
-                    <div class="google-maps">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1785.8157050367063!2d-51.94129866259723!3d-29.61561643379446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1694630741939!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="row row-cols-1 row-cols-lg-2 justify-content-evenly">
+                <div class="col col-lg-8 my-2">
+                    <!-- card datum -->
+                    <div id="datum" class="card">
+                        <div class="card-header">datum</div>
+                        <div class="card-body">
+                            <div class="google-maps">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1785.8157050367063!2d-51.94129866259723!3d-29.61561643379446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1694630741939!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- card apresentacao -->
-            <div id="apresentacao" class="card my-auto">
-                <div class="card-header">header</div>
-                <p class="card-text">
-                    Aqui temos um mapa interativo da dispersão do material arqueológico escavado no sítio RS TQ-141, assim como algumas informações adicionais para quem ficar interessado.<br><br>
-                    O sítio está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari, e fora escavado em 2017<br><br>
-                </p>
-                <p class="card-text d-none d-lg-block">
-                    A cultura indica uma ocupação guarani pré-histórica devido à grande presença de material cerâmico com acabamentos de superfície corrugados, lisos, pintados etc.<br><br>
-                    Estima-se que essa habitação humana tenha ocorrido há aproximadamente 500 anos.
-                </p>
-                <div class="row px-5 mx-5">
-                    <button id="launch-modal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPlot">
-                        Launch demo modal
-                    </button>
-                    <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#modalInfo">info</button>
+                <div class="col col-lg-4 p-3">
+                    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 justify-content-between">
+                        <!-- card texto -->
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">Sítio RS TQ-141</div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        O gráfico que segue é uma representação interativa do mapa de dispersão do material arqueológico escavado no sítio RS-TQ-141.
+                                        O sítio está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari, e
+                                        fora escavado em 2017 sob a coordenação dos arquelógos André Luís Ramos Soares (UFSM)
+                                        e Sérgio Klamt (UNISC).
+                                        A cultura indica uma ocupação guarani pré-histórica devido à grande presença de material cerâmico 
+                                        com acabamentos de superfície corrugados, lisos, pintados etc. Estima-se que essa habitação humana
+                                        tenha ocorrido há aproximadamente 500 anos.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card botoes -->
+                        <div class="col">
+                            <div class="card m-3">
+                                <div class="card-body d-flex flex-column">
+                                    <button class="btn btn-primary m-2" id="launch-modal" type="button" data-bs-toggle="modal" data-bs-target="#modalPlot">
+                                        Visualizar escavação
+                                    </button>
+                                    <button class="btn btn-info m-2" type="button" data-bs-toggle="modal" data-bs-target="#modalInfo">
+                                        info
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
                 </div>
             </div>
         </section>
+
+
         <!-- modal plot-->
         <section>
             <div class="modal fade" id="modalPlot" tabindex="-1" aria-hidden="true">
