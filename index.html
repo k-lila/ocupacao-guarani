@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sítio RS TQ-141</title>
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap" rel="stylesheet">
     <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         * {
             padding: 0;
             margin: 0;
+            font-family: 'Nunito Sans', sans-serif;
         }
 
         body {
@@ -43,17 +48,18 @@
         }
 
 
+
     </style>
 </head>
 <body>
     <div id="container" class="container">
         <!-- cards -->
-        <section class="mb-5">
+        <section>
             <div class="row row-cols-1 row-cols-lg-2 justify-content-evenly align-items-center">
                 <div class="col col-lg-8 my-2">
                     <!-- card datum -->
                     <div id="datum" class="card card-color">
-                        <div class="card-header">
+                        <div class="card-header mt-3">
                             <h1>Ocupação Guarani</h1>
                         </div>
                         <div class="card-body">
@@ -66,14 +72,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-lg-4 p-3 mt-5">
+                <div class="col col-lg-4 p-3">
                     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 justify-content-center align-items-center">
                         <!-- card texto -->
-                        <div class="col col-sm-12 col-md-8 col-lg-12 mt-2">
+                        <div class="col col-sm-12 col-md-8 col-lg-12">
                             <div class="card card-text-color border border-2 rounded-3 border-light">
                                 <div class="card-header">Sítio RS TQ-141</div>
                                 <div class="card-body">
-                                    <p class="card-text">
+                                    <p class="card-text text-center">
                                         O sítio RS TQ-141 está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari.
                                         Em 2017 ele foi escavado sob a coordenação dos arquelógos André Luís Ramos Soares (UFSM) e Sérgio Klamt (UNISC).
                                         A cultura indica uma ocupação guarani pré-histórica, devido à grande presença de material cerâmico 
@@ -109,21 +115,21 @@
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <div class="btn-group dropup">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     Plots
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><button class="btn btn-primary" id="btn-sitio">Sítio</button></li>
-                                    <li><button class="btn btn-primary" id="btn-acampamento">Acampamento</button></li>
-                                    <li><button class="btn btn-primary" id="btn-fogueira">Fogueira</button></li>
-                                    <li><button class="btn btn-primary" id="btn-quadrante1">Quadrante 1</button></li>
-                                    <li><button class="btn btn-primary" id="btn-quadrante2">Quadrante 2</button></li>
-                                    <li><button class="btn btn-primary" id="btn-quadrante3">Quadrante 3</button></li>
-                                    <li><button class="btn btn-primary" id="btn-quadrante4">Quadrante 4</button></li>
-                                    <li><button class="btn btn-primary" id="btn-quadrante5">Quadrante 5</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-sitio">Sítio</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-acampamento">Acampamento</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-fogueira">Fogueira</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-quadrante1">Quadrante 1</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-quadrante2">Quadrante 2</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-quadrante3">Quadrante 3</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-quadrante4">Quadrante 4</button></li>
+                                    <li><button class="btn btn-primary dropdown-item" id="btn-quadrante5">Quadrante 5</button></li>
                                 </ul>
                             </div>                        
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     </div>
                 </div>
@@ -135,14 +141,19 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">info</h5>
+                            <h5 class="modal-title">Informações adicionais</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            uiasduidashdiasduhasdoásuihdaipsudgasiçkjdghaspiçdugahspdiuasg
+                            Modal Body
+                            Modal Body
+                            Modal Body
+                            Modal Body
+                            Modal Body
+                            Modal Body
                         </div>
                         <div class="modal-footer">
-                            footer
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         </div>
                     </div>
                 </div>
