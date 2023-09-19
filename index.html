@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sítio RS TQ-141</title>
-    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="icon" type="image/png" href="./favicon.png">    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,800;1,6..12,400&display=swap" rel="stylesheet">
     <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
@@ -47,24 +47,25 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-
-
+        .text-justify {
+            text-align: justify;
+        }
     </style>
 </head>
 <body>
-    <div id="container" class="container">
+    <div id="container" class="container-fluid">
         <!-- cards -->
-        <section>
+        <section class="container">
             <div class="row row-cols-1 row-cols-lg-2 justify-content-evenly align-items-center">
                 <div class="col col-lg-8 my-2">
                     <!-- card datum -->
                     <div id="datum" class="card card-color">
                         <div class="card-header mt-3">
-                            <h1>Ocupação Guarani</h1>
+                            <h1 class="fw-bolder">Ocupação Guarani</h1>
                         </div>
                         <div class="card-body">
                             <div class="card-title">
-                                <h5>datum</h5>
+                                <h5 class="text-end fst-italic fw-light">datum</h5>
                             </div>
                             <div class="google-maps border border-2 rounded-3 border-light">
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1785.8157050367063!2d-51.94129866259723!3d-29.61561643379446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDM2JzU2LjMiUyA1McKwNTYnMjguOCJX!5e1!3m2!1spt-BR!2sbr!4v1694630741939!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -77,13 +78,15 @@
                         <!-- card texto -->
                         <div class="col col-sm-12 col-md-8 col-lg-12">
                             <div class="card card-text-color border border-2 rounded-3 border-light">
-                                <div class="card-header">Sítio RS TQ-141</div>
+                                <div class="card-header">
+                                    <h5 class="fw-bold">Sítio RS TQ-141</h5>
+                                </div>
                                 <div class="card-body">
                                     <p class="card-text text-center">
                                         O sítio RS TQ-141 está localizado no muncípio de Cruzeiro do Sul, à margem direita do Rio Taquari.
-                                        Em 2017 ele foi escavado sob a coordenação dos arquelógos André Luís Ramos Soares (UFSM) e Sérgio Klamt (UNISC).
-                                        A cultura indica uma ocupação guarani pré-histórica, devido à grande presença de material cerâmico 
-                                        com acabamentos de superfície corrugados, lisos, pintados etc.
+                                        Em 2017, foi escavado sob a coordenação dos arquelógos André Luís Ramos Soares (UFSM) e Sérgio Klamt (UNISC).
+                                        A cultura indica uma ocupação guarani pré-colonial, devido à grande presença de material cerâmico com acabamentos de superfície corrugados, lisos, pintados etc.
+                                        Estima-se que essa habitação humana tenha ocorrido há aproximadamente 500 anos.
                                     </p>
                                 </div>
                             </div>
@@ -92,10 +95,10 @@
                         <div class="col col-sm-10 col-md-4 col-lg-10">
                             <div class="card m-3 card-color border border-light border-2 rounded-3">
                                 <div class="card-body d-flex flex-column">
-                                    <button class="btn btn-primary m-1" id="launch-modal" type="button" data-bs-toggle="modal" data-bs-target="#modalPlot">
+                                    <button class="btn btn-primary m-1 mb-2" id="launch-modal" type="button" data-bs-toggle="modal" data-bs-target="#modalPlot">
                                         Visualizar escavação
                                     </button>
-                                    <button class="btn btn-info m-1 mx-3" type="button" data-bs-toggle="modal" data-bs-target="#modalInfo">
+                                    <button class="btn btn-info my-2 mx-3" type="button" data-bs-toggle="modal" data-bs-target="#modalInfo">
                                         info
                                     </button>
                                 </div>
@@ -105,8 +108,8 @@
                 </div>
             </div>
         </section>
-        <!-- modal plot-->
-        <section>
+        <!-- modal plot -->
+        <section class="container">
             <div class="modal fade" id="modalPlot" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered p-4">
                     <div class="modal-content">
@@ -136,21 +139,45 @@
             </div>
         </section>
         <!-- modal info -->
-        <section>
+        <section class="container">
             <div class="modal fade" id="modalInfo" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered my-1">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Informações adicionais</h5>
+                            <h5 class="modal-title fw-bold">Informações adicionais</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Modal Body
-                            Modal Body
-                            Modal Body
-                            Modal Body
-                            Modal Body
-                            Modal Body
+                            <div class="row align-items-center row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
+                                <div class="col col-md-7">
+                                    <p class="p-2 my-1 text-justify">
+                                        Esta página tem como objetivo principal a divulgação científica das descobertas relacionadas ao <span class="fw-bold">sítio RS TQ-141</span>.
+                                        Os dados aqui apresentados são preliminares e representam análise informal do sítio. 
+                                        Entre os materiais encontrados durante as escavações, incluem-se artefatos de cerâmica, restos ósseos, carvão e pedras. 
+                                        Para obter mais informações, consulte os artigos abaixo. 
+                                    </p>
+                                </div>
+                                <div class="col col-md-5">
+                                    <p class="p-2 my-1 text-center fst-italic">
+                                        Um agradecimento especial à <span class="fw-bold fst-normal">Guilherme Flain</span>, por dedicar seu tempo para explicar a importância e o significado dos dados aqui presentes. 
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col my-2 mt-4">
+                                    <div class="card w-75 d-flex mx-auto border border-2 border-dark rounded">
+                                        <div class="card-body">
+                                            <h5 class="card-title">artigos úteis</h5>
+                                            <a class="row justify-content-center my-3 text-decoration-none mx-2" href="https://www.scielo.br/j/bgoeldi/a/RbmpkMzYgV36sXRMbwYMcKt/?format=html&lang=pt" target="_blank">
+                                                <button class="btn btn-outline-success text-start">Sobre a ocupação guarani pré-colonial na bacia do Rio Taquari/Antas</button>
+                                            </a>
+                                            <a class="row justify-content-center my-3 text-decoration-none mx-2" href="http://revistascientificas.filo.uba.ar/index.php/Arqueologia/article/view/7329", target="_blank">
+                                                <button class="btn btn-outline-success text-start">Sobre a cerâmica encontrada no Sítio RS TQ-141</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -165,7 +192,7 @@
         async function load_json(url_json) {
             const response = await fetch(url_json);    
             return await response.json();
-        }
+        };
         // cria o plot
         function showPlot(url_json, id_html, _width, _height) {
             var plotDiv = document.getElementById(id_html);
@@ -195,7 +222,7 @@
                 );
             })
         };
-        // função que atualiza e mostra o plot
+        // atualiza e mostra o plot na tela
         function updatePlot(name_plot) {
             var referencia = document.getElementById('modal-body');
             function resize(num, minus) {return num - (num * minus)};
@@ -216,15 +243,19 @@
                 'quadrante5'                
             ];
             var name_plot = plotList[0];
+            // salva em uma var o modal que irá conter o gráfico
             var modalPlot = document.getElementById('modalPlot');
+            // event listener do modal
             modalPlot.addEventListener('shown.bs.modal', function() {
                 updatePlot(name_plot);
+                // event listener dos botões
                 plotList.forEach(function(plot) {
                     document.getElementById(`btn-${plot}`).addEventListener('click', function() {
                         name_plot = plot;
                         updatePlot(name_plot)
                     })
                 });
+                // resize
                 window.addEventListener('resize', function() {
                     updatePlot(name_plot)
                 })
